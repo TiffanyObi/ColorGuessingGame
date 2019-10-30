@@ -17,44 +17,44 @@ class ViewController: UIViewController {
     
     @IBAction func red(_ redButton: UIButton) {
         
-        if randRed >= randGreen && randRed {
-            
+        if randRed >= randGreen && randRed >= randBlue {
             changeColor()
             playerScore += 1
-            userScore.text = "\(playerScore)"
+            userScore.text = "Yay! Your score is \(playerScore)"
         } else {
             changeColor()
             playerScore -= 1
-            userScore.text = "\(playerScore)"
+            userScore.text = "Uh Oh! That's Wrong! \(playerScore)"
         }
         
     }
     
     
     @IBAction func blue(_ blueButton: UIButton) {
-        if randBlue >= randRed && randBlue >= randGreen {
+        if randBlue >= randGreen && randBlue >= randRed {
             changeColor()
             playerScore += 1
-            userScore.text = "\(playerScore)"
+            userScore.text = "Yay! Your score is \(playerScore)"
         } else {
             changeColor()
             playerScore -= 1
-            userScore.text = "\(playerScore)"
+            userScore.text = "Uh Oh! That's Wrong! \(playerScore)"
         }
+        
     }
     
     
     
     
     @IBAction func green(_ greenButton: UIButton) {
-        if randGreen >= randBlue && randGreen >= randRed {
+        if randGreen >= randRed && randGreen >= randBlue {
             changeColor()
             playerScore += 1
-            userScore.text = "\(playerScore)"
-        } else { changeColor()
+            userScore.text = "Yay! Your score is \(playerScore)"
+        } else {
+            changeColor()
             playerScore -= 1
-            userScore.text = "\(playerScore)"
-            
+            userScore.text = "Uh Oh! That's Wrong! \(playerScore)"
         }
     }
     
@@ -62,6 +62,11 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var initView: UIView!
     
+    @IBOutlet weak var redButton: UIButton!
+    
+    @IBOutlet weak var blueButton: UIButton!
+    
+    @IBOutlet weak var greenButton: UIButton!
     
     @IBOutlet weak var userScore: UILabel!
     
@@ -70,36 +75,47 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-      
+        
         changeColor()
-         
-            }
-
+        
+    }
+    
     
     var playerScore = 0
     
+
     
     func changeColor () {
         
         
-         let randRed = CGFloat.random(in: 0...1)
-         let randBlue = CGFloat.random(in: 0...1)
-         let randGreen = CGFloat.random(in: 0...1)
-         
-         let myColor = UIColor(red: randRed, green: randGreen, blue: randBlue, alpha: 1)
+    randRed = CGFloat.random(in: 0...1)
+    randBlue = CGFloat.random(in: 0...1)
+    randGreen = CGFloat.random(in: 0...1)
+        
+        let myColor = UIColor(red: randRed, green: randGreen, blue: randBlue, alpha: 1)
         
         initView.backgroundColor = myColor
         
-
+        
+    }
+    
+    func newGame () {
+        let arrayOfButtons = [redButton,blueButton,greenButton]
+        for button in arrayOfButtons {
+            if playerScore == 0 {
+                button?.isEnabled = false
             }
         }
-    
-    
-    
-    
-    
-    
-    
+        
+    }
+}
+
+
+
+
+
+
+
 
 
 
