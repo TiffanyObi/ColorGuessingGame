@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     var randGreen: CGFloat = 0.0
     
     
+    
     @IBAction func red(_ redButton: UIButton) {
         
         if randRed >= randGreen && randRed >= randBlue {
@@ -26,7 +27,7 @@ class ViewController: UIViewController {
             playerScore -= 1
             userScore.text = "Uh Oh! That's Wrong! \(playerScore)"
         }
-        
+       disableButton(playerScore)
     }
     
     
@@ -40,6 +41,8 @@ class ViewController: UIViewController {
             playerScore -= 1
             userScore.text = "Uh Oh! That's Wrong! \(playerScore)"
         }
+        
+        disableButton(playerScore)
         
     }
     
@@ -56,8 +59,9 @@ class ViewController: UIViewController {
             playerScore -= 1
             userScore.text = "Uh Oh! That's Wrong! \(playerScore)"
         }
+        
+      disableButton(playerScore)
     }
-    
     
     
     @IBOutlet weak var initView: UIView!
@@ -83,14 +87,14 @@ class ViewController: UIViewController {
     
     var playerScore = 0
     
-
+    
     
     func changeColor () {
         
         
-    randRed = CGFloat.random(in: 0...1)
-    randBlue = CGFloat.random(in: 0...1)
-    randGreen = CGFloat.random(in: 0...1)
+        randRed = CGFloat.random(in: 0...1)
+        randBlue = CGFloat.random(in: 0...1)
+        randGreen = CGFloat.random(in: 0...1)
         
         let myColor = UIColor(red: randRed, green: randGreen, blue: randBlue, alpha: 1)
         
@@ -99,16 +103,18 @@ class ViewController: UIViewController {
         
     }
     
-    func newGame () {
-        let arrayOfButtons = [redButton,blueButton,greenButton]
-        for button in arrayOfButtons {
-            if playerScore == 0 {
+    func disableButton (_:Int) {
+        let arrayOfButton = [redButton,blueButton,greenButton]
+        
+        if playerScore < 0 {
+            for button in arrayOfButton {
                 button?.isEnabled = false
             }
         }
-        
     }
+    
 }
+
 
 
 
