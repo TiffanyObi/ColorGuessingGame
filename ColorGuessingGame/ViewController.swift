@@ -27,11 +27,14 @@ class ViewController: UIViewController {
             playerScore -= 1
             userScore.text = "Uh Oh! That's Wrong! \(playerScore)"
         }
-       disableButton(playerScore)
+        if playerScore < 0 {
+            userScore.text = "Sorry, You Lose! Press New Game To Play Again!"
+            disableButton()
+        }
     }
     
-    
     @IBAction func blue(_ blueButton: UIButton) {
+        
         if randBlue >= randGreen && randBlue >= randRed {
             changeColor()
             playerScore += 1
@@ -41,9 +44,10 @@ class ViewController: UIViewController {
             playerScore -= 1
             userScore.text = "Uh Oh! That's Wrong! \(playerScore)"
         }
-        
-        disableButton(playerScore)
-        
+        if playerScore < 0 {
+            userScore.text = "Sorry, You Lose! Press New Game To Play Again!"
+            disableButton()
+        }
     }
     
     
@@ -60,7 +64,10 @@ class ViewController: UIViewController {
             userScore.text = "Uh Oh! That's Wrong! \(playerScore)"
         }
         
-      disableButton(playerScore)
+        if playerScore < 0 {
+            userScore.text = "Sorry, You Lose! Press New Game To Play Again!"
+            disableButton()
+        }
     }
     
     
@@ -103,17 +110,16 @@ class ViewController: UIViewController {
         
     }
     
-    func disableButton (_:Int) {
-        let arrayOfButton = [redButton,blueButton,greenButton]
+    func disableButton () {
+        redButton.isEnabled = false
+        greenButton.isEnabled = false
+        blueButton.isEnabled = false
         
-        if playerScore < 0 {
-            for button in arrayOfButton {
-                button?.isEnabled = false
-            }
-        }
     }
     
 }
+
+
 
 
 
